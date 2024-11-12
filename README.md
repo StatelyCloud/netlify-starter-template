@@ -1,3 +1,5 @@
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/StatelyCloud/netlify-starter-template#PROFILE_SLUG=default&NEXT_PUBLIC_EDITABLE=false)
+
 # Netlify Starter Template
 
 This is a sample NextJS webapp that uses StatelyDB.

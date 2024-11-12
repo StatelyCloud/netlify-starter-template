@@ -1,8 +1,9 @@
-"use server";
-
 import { createLink, renameProfile } from "@/lib/actions";
 import NextLink from "next/link";
 import { redirect } from "next/navigation";
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 const isEditable = process.env.NEXT_PUBLIC_EDITABLE !== "false";
 

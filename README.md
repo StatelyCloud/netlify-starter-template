@@ -78,7 +78,7 @@ You only need to follow these steps if you want to make changes to the Schema lo
 ## Configuration Options
 
 * If you want the site to be editable, set the environment variable `NEXT_PUBLIC_EDITABLE` to `true`. You probably don't want everyone on the Internet to be able to edit your page, so use this with caution -- it's just an example!
-* If you want to change the profile photo, swap out `thispersondoesnotexist.jpg` for something else.
+* If you want to change the profile photo, swap out `profile.png` for something else.
 
 ## Development Server
 

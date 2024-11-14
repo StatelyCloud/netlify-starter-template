@@ -3,15 +3,19 @@
 import { keyPath } from "@stately-cloud/client";
 import { statelyClient } from "./stately";
 
+const profileSlug = process.env.PROFILE_SLUG || "default";
+
 export async function fetchProfileWithLinks() {
-  const profile = await statelyClient.get("Profile", keyPath`/p-${process.env.PROFILE_SLUG!}`);
-  const iter = statelyClient.beginList(
-    keyPath`/p-${process.env.PROFILE_SLUG!}/l`
-  );
   const links = [];
+  let profile = null;
+  const iter = statelyClient.beginList(
+    keyPath`/p-${profileSlug}`
+  );
   for await (const item of iter) {
     if (statelyClient.isType(item, "Link")) {
       links.push(item);
+    } else if (statelyClient.isType(item, "Profile")) {
+      profile = item;
     }
   }
   return { profile, links };
@@ -24,19 +28,19 @@ export async function createLink(formData: FormData) {
   const link = statelyClient.create("Link", {
     title,
     url,
-    profileId: process.env.PROFILE_SLUG!,
+    profileId: profileSlug,
     emoji,
   });
   await statelyClient.put(link);
 }
 
 export async function deleteLink(id: bigint) {
-  await statelyClient.del(keyPath`/p-${process.env.PROFILE_SLUG!}/l-${id}`);
+  await statelyClient.del(keyPath`/p-${profileSlug}/l-${id}`);
 }
 
 export async function renameProfile(newFullName: string) {
   const profile = statelyClient.create("Profile", {
-    id: process.env.PROFILE_SLUG!,
+    id: profileSlug,
     fullName: newFullName,
   });
   await statelyClient.put(profile)

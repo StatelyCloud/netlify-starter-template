@@ -63,7 +63,7 @@ export default function Page() {
         </div>
         <div className="flex flex-col items-center mb-6">
           <Image
-            src="/thispersondoesnotexist.jpg"
+            src="/profile.png"
             alt="Avatar"
             width={96}
             height={96}

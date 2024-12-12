@@ -36,8 +36,7 @@ This is a sample NextJS webapp that uses StatelyDB.
    netlify env:set NEXT_PUBLIC_EDITABLE true
    netlify env:set PROFILE_SLUG default
    netlify env:set STATELY_STORE_ID your_store_id
-   netlify env:set STATELY_CLIENT_ID your_client_id
-   netlify env:set STATELY_CLIENT_SECRET your_client_secret
+   netlify env:set STATELY_ACCESS_KEY your_access_key
    ```
 4. Deploy to Netlify!
    ```
@@ -84,13 +83,12 @@ You only need to follow these steps if you want to make changes to the Schema lo
 
 1. For local development, create a `.env.local` file in the root directory with the following content:
    ```
-   STATELY_CLIENT_ID=your_client_id
-   STATELY_CLIENT_SECRET=your_client_secret
+   STATELY_ACCESS_KEY=your_access_key
    STATELY_STORE_ID=12345
    PROFILE_SLUG=default
    NEXT_PUBLIC_EDITABLE=false
    ```
-   Replace `your_client_id`, `your_client_secret`, and `12345` with your actual StatelyDB credentials and store ID.  Replace `your_base_url` with the base url of your app (e.g. `http://localhost:3000` or `https://statelydb-demo.netlify.app`).
+   Replace `your_access_key` and `12345` with your actual StatelyDB credentials and store ID.  Replace `your_base_url` with the base url of your app (e.g. `http://localhost:3000` or `https://statelydb-demo.netlify.app`).
    
    See `.env.local.example` for more details on the other configuration options.
 

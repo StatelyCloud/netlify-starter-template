@@ -5,5 +5,4 @@
   PROFILE_SLUG = "A partition key for the profile. You can leave this as 'default'."
   NEXT_PUBLIC_EDITABLE = "The public demo is not editable. Set this to true if you want to enable editing."
   STATELY_STORE_ID="The Store ID of your StatelyDB Store."
-  STATELY_CLIENT_ID="Your StatelyDB Client ID"
-  STATELY_CLIENT_SECRET="Your StatelyDB Client Secret"
+  STATELY_ACCESS_KEY="Your StatelyDB Access Key"

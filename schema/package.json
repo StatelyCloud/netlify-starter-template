@@ -5,6 +5,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@stately-cloud/schema": "^0.6.0"
+    "@stately-cloud/schema": "^0.12.1"
   }
 }

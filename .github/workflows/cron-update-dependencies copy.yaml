@@ -27,3 +27,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
         env:
           LOG_LEVEL: "debug"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,124 @@
+{
+  // misc repo setup
+  platform: "github",
+  repositories: ["StatelyCloud/netlify-starter-template"],
+  reviewers: ["team:developers"],
+  // No idea if this does anything.
+  gitAuthor: "Renovate Bot <infra@stately.cloud>",
+  branchPrefix: "renovate-action/",
+  labels: ["renovate"],
+
+  // preset configs that we want to inherit
+  extends: [
+    // disable the dependency dashboard flow - this uses a github issue as
+    // a dashboard and a place to approve changes before the PR is made
+    ":disableDependencyDashboard",
+    // open the PR immediately after running
+    ":prImmediately",
+    // Rebase existing PRs any time the base branch has been updated.
+    ":rebaseStalePrs",
+  ],
+
+  // We're using these for development while we're working in a branch but
+  // having them set allows us to update config.json5 in a branch and have
+  // it still be picked up by the CI.
+  onboarding: false,
+  requireConfig: false,
+
+  // debug stuff
+  printConfig: true,
+
+  // caching - currently disabled because we only run renovate once per week.
+  // repositoryCache: "enabled",
+  // cacheDir: "/tmp/renovate/cache",
+
+  postUpdateOptions: ["bundlerConservative", "npmDedupe", "pnpmDedupe", "yarnDedupeHighest"],
+
+  // actual update config
+
+  // disable vulnerability alerts because they always go in their own PR
+  // and we are updating everything anyway
+  vulnerabilityAlerts: {
+    enabled: false,
+  },
+
+  separateMajorMinor: true,
+  automerge: false,
+  automergeType: "pr",
+  prCreation: "immediate",
+  recreateWhen: "always",
+  prHourlyLimit: 0,
+
+  // This is meant to make renovate download deps it needs
+  // such as pyenv. The default value on the renovate-full
+  // container is "global" so we need to explicitly set "install"
+  // This is very poorly documented here:
+  //    https://docs.renovatebot.com/self-hosted-configuration/#binarysource
+  // Even with this set renovate still throws errors about `pyenv` not being found
+  // so we manually install that in renovate/run.sh
+  binarySource: "install",
+
+  // If a package matches multiple rules from the list below,
+  // the configs will be merged together.
+  // You can ensure a group gets its own PR by setting `groupName`.
+  packageRules: [
+    // if stuff lands in the catch-all it indicates that we missed
+    // it in the more specific rules below
+    {
+      groupName: "remaining",
+      matchPackagePatterns: ["*"],
+      enabled: true,
+    },
+
+    // This will generate a single dedicated PR for all major package version updates
+    {
+      groupName: "major npm versions",
+      matchUpdateTypes: ["major"],
+      matchDatasources: ["npm"],
+    },
+
+    // This will generate a single dedicated PR for all minor and patch package version updates
+    // The PR will automerge if there are no conflicts and the CI passes
+    {
+      groupName: "minor/patch npm versions",
+      matchUpdateTypes: ["minor", "patch", "pin", "digest", "pinDigest"],
+      matchDatasources: ["npm"],
+      automerge: true,
+    },
+
+    // This will generate separate PRs for language updates, grouped as major/minor/patch
+    // ie: 1 PR for all major language updates, 1 PR for all minor language updates, etc
+    {
+      groupName: "lang-node",
+      matchDatasources: ["node-version"],
+      separateMinorPatch: true,
+      automerge: false,
+    },
+
+    // add any other packages we explicitly want to ignore
+    {
+      groupName: "explicit ignores",
+      matchPackageNames: [
+        // There's a corepack issue that makes it impossible to upgrade pnpm until Node is updated.
+        "pnpm",
+        // eslint-plugin-sonarjs is messed up and I can't even figure out where
+        // to complain about it
+        "eslint-plugin-sonarjs",
+      ],
+      enabled: false,
+    },
+  ],
+
+  customManagers: [
+    {
+      // This is a rule to update the renovate docker image version that we use in any github workflows
+      customType: "regex",
+      description: ["Update `version:` and `_VERSION:` variables in github workflows"],
+      fileMatch: ["^\\.github/workflows/[^/]+\\.ya?ml$"],
+      matchStrings: [
+        "\\s+(?:[a-z]-)?version: (?<currentValue>.+?) # renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)(?: (?:packageName|lookupName)=(?<packageName>.+?))?(?: versioning=(?<versioning>.+?))?\\s",
+        "\\s*[A-Z_]+?_VERSION: (?<currentValue>.+?) # renovate: datasource=(?<datasource>.+?) depName=(?<depName>.+?)(?: (?:packageName|lookupName)=(?<packageName>.+?))?(?: versioning=(?<versioning>.+?))?\\s",
+      ],
+    },
+  ],
+}

@@ -1,6 +1,6 @@
 import { itemType, string, uint } from "@stately-cloud/schema";
 
-export const Profile = itemType("Profile", {
+itemType("Profile", {
   keyPath: "/p-:id",
   fields: {
     id: { type: string },
@@ -8,7 +8,7 @@ export const Profile = itemType("Profile", {
   },
 });
 
-export const Link = itemType("Link", {
+itemType("Link", {
   keyPath: "/p-:profile_id/l-:id",
   fields: {
     id: { type: uint, initialValue: "sequence" },

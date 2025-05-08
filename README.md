@@ -22,25 +22,25 @@ This is a sample NextJS webapp that uses StatelyDB.
 ## Quick Start
 
 1. Clone this repository
-2. Install dependencies:
+2. Install NPM dependencies:
    ```
    npm install
    ```
 3. Visit the Stately Cloud console at https://console.stately.cloud and grab your credentials and Store ID. If you don't have one yet, request one.
 4. Create a new Netlify site:
    ```
-   netlify sites:create
+   npx netlify sites:create
    ```
 5. Configure environment variables:
    ```
-   netlify env:set NEXT_PUBLIC_EDITABLE true
-   netlify env:set PROFILE_SLUG default
-   netlify env:set STATELY_STORE_ID your_store_id
-   netlify env:set STATELY_ACCESS_KEY your_access_key
+   npx netlify env:set NEXT_PUBLIC_EDITABLE true
+   npx netlify env:set PROFILE_SLUG default
+   npx netlify env:set STATELY_STORE_ID your_store_id
+   npx netlify env:set STATELY_ACCESS_KEY your_access_key
    ```
 4. Deploy to Netlify!
    ```
-   netlify deploy --build
+   npx netlify deploy --build
    ```
 
 # Local Development
@@ -57,21 +57,20 @@ You only need to follow these steps if you want to make changes to the Schema lo
    ```
    stately login
    ```
-3. Navigate to the `schema` directory:
+3. Publish the schema:
    ```
-   cd schema
+   stately schema put \
+      -m "my schema change message" \
+      --schema-id <your_schema_id> \
+      schema/schema.ts
    ```
-4. Install dependencies:
+4. Generate the TypeScript client:
    ```
-   npm install
-   ```
-5. Publish the schema:
-   ```
-   stately schema put -m "my schema change message" --schema-id <your_schema_id> schema.ts
-   ```
-6. Generate the TypeScript client:
-   ```
-   stately schema generate --language ts --schema-id <your_schema_id> --version <schema_version> ../src/lib/generated
+   stately schema generate \
+      --language ts \
+      --schema-id <your_schema_id> \
+      --version <schema_version> \
+      ../src/lib/generated
    ```
 
 ## Configuration Options
@@ -89,12 +88,12 @@ You only need to follow these steps if you want to make changes to the Schema lo
    NEXT_PUBLIC_EDITABLE=false
    ```
    Replace `your_access_key` and `12345` with your actual StatelyDB credentials and store ID.  Replace `your_base_url` with the base url of your app (e.g. `http://localhost:3000` or `https://statelydb-demo.netlify.app`).
-   
+
    See `.env.local.example` for more details on the other configuration options.
 
 
 2. Run the development server:
 
    ```
-   netlify dev
+   npx netlify dev
    ```

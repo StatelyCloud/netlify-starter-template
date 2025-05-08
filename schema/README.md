@@ -5,7 +5,7 @@ This directory contains a boilerplate schema to help you start your StatelyDB jo
 - You've already setup a Stately account at [https://console.stately.cloud](https://console.stately.cloud)
 - You have installed the `stately` CLI from [here](https://stately.cloud/downloads) and it's available on your `PATH`
 - You have installed [nodejs and npm](https://nodejs.org/en/download/package-manager), or any other package manager of your choice
-- You've run `npm install` in this directory to install the required dependencies
+- You've run `npm install` to install the required dependencies
 
 ## Getting started
 - Once you've completed the prerequisites above you can start editing your schema in the [schema.ts](./schema.ts) file

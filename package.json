@@ -9,24 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@stately-cloud/client": "^0.30.0",
-    "@stately-cloud/schema": "^0.32.0",
+    "@stately-cloud/client": "^0.31.0",
+    "@stately-cloud/schema": "^0.33.0",
     "@tailwindcss/postcss": "^4.1.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "next": "15.3.3",
+    "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.8.1",
-    "@stately-cloud/schema": "^0.32.0",
+    "@stately-cloud/schema": "^0.33.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "15.3.3",
+    "eslint-config-next": "15.3.4",
     "netlify-cli": "^21.2.0",
     "postcss": "^8.5.3",
     "typescript": "^5"

@@ -22,12 +22,12 @@
   "devDependencies": {
     "@netlify/plugin-nextjs": "^5.8.1",
     "@stately-cloud/schema": "^0.33.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "15.3.4",
-    "netlify-cli": "^21.2.0",
+    "netlify-cli": "^22.0.0",
     "postcss": "^8.5.3",
     "typescript": "^5"
   }

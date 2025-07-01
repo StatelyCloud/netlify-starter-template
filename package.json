@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@stately-cloud/client": "^0.31.0",
+    "@stately-cloud/client": "^0.32.0",
     "@stately-cloud/schema": "^0.33.0",
     "@tailwindcss/postcss": "^4.1.7",
     "class-variance-authority": "^0.7.0",
